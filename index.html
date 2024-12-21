@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Christmas Gift Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Pacifico&display=swap');
+        
+        body {
+            background: radial-gradient(circle at center, #ff0000, #990000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add twinkling stars effect */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white 1px, transparent 1px),
+                radial-gradient(white 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            animation: twinkle 4s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.3; }
+        }
+
+        .gift-card {
+            width: 600px;
+            height: 350px;
+            background: linear-gradient(135deg, #ff3333, #cc0000, #990000);
+            background-size: 300% 300%;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5),
+                        inset 0 0 100px rgba(255,255,255,0.2),
+                        0 0 30px rgba(255, 0, 0, 0.5);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin: 50px auto;
+            animation: cardFloat 3s ease-in-out infinite,
+                       gradientMove 15s ease infinite;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gift-card:hover {
+            transform: scale(1.02) translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.7),
+                        inset 0 0 120px rgba(255,255,255,0.3),
+                        0 0 50px rgba(255, 0, 0, 0.7);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .snowflakes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: 
+                radial-gradient(white 3px, transparent 3px) 0 0 / 40px 40px,
+                radial-gradient(white 2px, transparent 2px) 20px 20px / 40px 40px;
+            opacity: 0.6;
+            animation: snow 15s linear infinite;
+        }
+
+        @keyframes snow {
+            0% { background-position: 0 0, 20px 20px; }
+            100% { background-position: 40px 40px, 60px 60px; }
+        }
+
+        .tree {
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            animation: treeWiggle 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .tree:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 0 25px rgba(255,255,255,0.8));
+        }
+
+        @keyframes treeWiggle {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            50% { transform: rotate(3deg) scale(1.05); }
+        }
+
+        .message {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 55px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #ff0000, #ffd700, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: textShine 3s linear infinite;
+            text-shadow: 
+                2px 2px 4px rgba(0,0,0,0.3),
+                0 0 10px rgba(255,255,255,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .message:hover {
+            transform: scale(1.05);
+            animation: textShine 1.5s linear infinite;
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .sub-message {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards 0.5s;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #ffffff, #00ff00, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 5px rgba(255,255,255,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .sub-message:hover {
+            transform: scale(1.05) translateY(-5px);
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .from {
+            font-family: 'Pacifico', cursive;
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            font-size: 24px;
+            animation: slideIn 1.5s ease-out forwards;
+            background: linear-gradient(90deg, #ffd700, #ffffff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 5px rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .from:hover {
+            transform: scale(1.1) translateX(10px);
+            text-shadow: 0 0 15px rgba(255,255,255,0.7);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="gift-card">
+        <div class="snowflakes"></div>
+        <div class="message">Merry Christmas!</div>
+        <div class="sub-message">Wishing you joy and happiness for all coders</div>
+        <img src="/beautiful-christmas-elements-with-christmas-trees-png_234561.png" alt="Christmas Tree" class="tree">
+        <div class="from">With love, from Brototype Family</div>
+    </div>
+</body>
+</html>
